@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ElfmeterProjekt.ElfmeterProjektApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ElfmeterProjekt.ElfmeterProjektApp"
+    xmlns:pages="clr-namespace:ElfmeterProjekt.ElfmeterProjektApp.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Title="ElfmeterProjekt.ElfmeterProjektApp"
+    
+    >
+
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />-->
+
+    <TabBar>
+
+        <Tab Title="Elfmeter" Icon="football.png" >
+            <ShellContent
+                          ContentTemplate="{DataTemplate local:MainPage}"/>
+        </Tab>
+
+        <Tab Title="Team hinzufügen" Icon="add.png">
+            <ShellContent
+                  ContentTemplate="{DataTemplate pages:AddTeam}"/>
+        </Tab>
+
+        <Tab Title="Liste aller Teams" Icon="list.png">
+            <ShellContent
+          ContentTemplate="{DataTemplate pages:TeamList}"/>
+        </Tab>
+
+
+    </TabBar>
+
+</Shell>

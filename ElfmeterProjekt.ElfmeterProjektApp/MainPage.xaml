@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ElfmeterProjekt.ElfmeterProjektApp.MainPage"
+             xmlns:viewmodels="clr-namespace:ElfmeterProjekt.ElfmeterProjektCore.ViewModels;assembly=ElfmeterProjekt.ElfmeterProjektCore"
+             x:DataType="viewmodels:MainViewModel"
+             xmlns:model="clr-namespace:ElfmeterProjekt.Lib.Models;assembly=ElfmeterProjekt.Lib"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundImageSource="test.png"
+             
+             >
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                        Command="{Binding LoadCommand}"/>
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsNullConverter x:Key="IsNullConverter"/>
+            <toolkit:IsNotNullConverter x:Key="IsNotNullConverter"/>
+        </ResourceDictionary>
+
+        
+
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, *" Margin="10" ColumnSpacing="5" >
+
+            <Grid RowDefinitions="Auto,Auto,*" Grid.Row="0">
+
+                <Label Text="Auswahl Team 1" FontSize="Header" TextColor="Red"/>
+
+                <Grid ColumnDefinitions="*,*,*" Grid.Row="1">
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Id" Padding="5" TextColor="Red"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Team Name" Padding="5" TextColor="Red"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="Liga" Padding="5" TextColor="Red"/>
+
+                </Grid>
+                <CollectionView Grid.Row="2"
+                            ItemsSource="{Binding Teams}"
+                            SelectedItem="{Binding SelectedTeam}"
+                            SelectionMode="Single">
+
+                    <CollectionView.EmptyView>
+                        <Label  Padding="10" Text="Es wurde keine Fahrt hinzugefügt"></Label>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Team">
+                            <Grid ColumnDefinitions="*,*,*">
+
+                                <Label  Grid.Column="0" Text="{Binding Id}" Padding="5" TextColor="Red"/>
+                                <Label  Grid.Column="1"  Text="{Binding TeamName}" Padding="5" TextColor="Red"/>
+                                <Label  Grid.Column="2"  Text="{Binding Liga}" Padding="5" TextColor="Red"/>
+
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto,*">
+                <Label Text="Auswahl Team 2" FontSize="Header" TextColor="Blue"/>
+                <Grid ColumnDefinitions="*,*,*" Grid.Row="1">
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Id" Padding="5" TextColor="Blue"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Team Name" Padding="5" TextColor="Blue"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="Liga" Padding="5" TextColor="Blue"/>
+
+                </Grid>
+                <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Teams}"
+                        SelectedItem="{Binding SelectedTeam2}"
+                        SelectionMode="Single">
+                    <CollectionView.EmptyView>
+                        <Label  Padding="10" Text="Es wurde keine Fahrt hinzugefügt"></Label>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Team">
+                            <Grid ColumnDefinitions="*,*,*">
+
+                                <Label  Grid.Column="0" Text="{Binding Id}" Padding="5" TextColor="Blue"/>
+                                <Label  Grid.Column="1"  Text="{Binding TeamName}" Padding="5" TextColor="Blue"/>
+                                <Label  Grid.Column="2"  Text="{Binding Liga}" Padding="5" TextColor="Blue"/>
+
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Elfmeterschießen beginnen!" TextColor="Black" ImageSource="play.png" BackgroundColor="Azure" Command="{Binding PlayCommand}"/>
+
+
+        <Grid Grid.Row="2" Grid.Column="0" IsVisible="{Binding SelectedTeam, Converter={StaticResource IsNullConverter}}" >
+
+                <Label Text="Bitte Wähle in der Team-1 Auswahl ein Team aus!" FontAttributes="Bold" TextColor="Orange"/>
+
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" IsVisible="{Binding SelectedTeam, Converter={StaticResource IsNullConverter}}" >
+
+                <Label Text="Bitte Wähle in der Team-1 Auswahl ein Team aus!" FontAttributes="Bold" TextColor="Orange"/>
+
+        </Grid>
+
+
+        <Grid Margin="0, 15" RowSpacing="10" Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" IsVisible="{Binding SelectedTeam, Converter={StaticResource IsNotNullConverter}}">
+                <VerticalStackLayout>
+                    <Label Text="{Binding SelectedTeam.Id}" FontAttributes="Bold" FontSize="Large" TextColor="Orange"/>
+                    <Label Text="{Binding SelectedTeam.TeamName}" FontAttributes="Bold" FontSize="Large" TextColor="Orange"/>
+                    <Label Text="{Binding SelectedTeam.Liga}" FontAttributes="Bold" FontSize="Large" TextColor="Orange"/>
+                    <Button BackgroundColor="DarkRed" Text="Team löschen!" Command="{Binding DeleteCommand}" ImageSource="danger.png" />
+                </VerticalStackLayout>
+        </Grid>
+
+            <Grid RowSpacing="10" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" IsVisible="{Binding SelectedTeam, Converter={StaticResource IsNotNullConverter}}">
+                <VerticalStackLayout>
+
+                    <Label Text="Team Name" FontSize="Caption" FontAttributes="Bold" TextColor="Orange"/>
+                    <Entry Text="{Binding SelectedTeam.TeamName}" FontAttributes="Bold" FontSize="Large" TextColor="Orange"/>
+                    <Label Text="Liga" FontSize="Caption" FontAttributes="Bold" TextColor="Orange"/>
+                    <Entry Text="{Binding SelectedTeam.Liga}" FontAttributes="Bold" FontSize="Large" TextColor="Orange"/>
+                    <Button BackgroundColor="Violet" Text="Team bearbeiten!" ImageSource="update.png" Command="{Binding UpdateCommand}" />
+                </VerticalStackLayout>
+            </Grid>
+
+
+
+        </Grid>
+
+    </ScrollView>
+
+            
+
+</ContentPage>
