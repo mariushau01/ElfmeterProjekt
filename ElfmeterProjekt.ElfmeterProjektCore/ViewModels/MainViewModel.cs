@@ -100,7 +100,7 @@ namespace ElfmeterProjekt.ElfmeterProjektCore.ViewModels
                     "Ein Team kann nicht gegen sich Selbst spielen!");
             }
             else
-            {
+            { 
                 _alertService.ShowAlert($"Elfmeterschießen beginnt! {SelectedTeam.TeamName} gegen {SelectedTeam2.TeamName}",
                     "Klicke 'Ok' um zu starten!");
 
