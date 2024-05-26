@@ -46,7 +46,7 @@
                             SelectionMode="Single">
 
                     <CollectionView.EmptyView>
-                        <Label  Padding="10" Text="Es wurde keine Fahrt hinzugefügt"></Label>
+                        <Label  Padding="10" Text="Es wurde kein Team hinzugefügt"></Label>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Team">
@@ -75,7 +75,7 @@
                         SelectedItem="{Binding SelectedTeam2}"
                         SelectionMode="Single">
                     <CollectionView.EmptyView>
-                        <Label  Padding="10" Text="Es wurde keine Fahrt hinzugefügt"></Label>
+                        <Label  Padding="10" Text="Es wurde kein Team hinzugefügt"></Label>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Team">

@@ -7,13 +7,9 @@
     xmlns:pages="clr-namespace:ElfmeterProjekt.ElfmeterProjektApp.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="ElfmeterProjekt.ElfmeterProjektApp"
-    
     >
 
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />-->
+  
 
     <TabBar>
 

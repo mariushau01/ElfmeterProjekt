@@ -15,7 +15,7 @@ namespace ElfmeterProjekt.ElfmeterProjektCore.ViewModels
     {
 
         IRepository _repository = repository;
-        IAlertService _alertService = alertService;
+        IAlertService _alertService = alertService; 
 
         private bool _isLoaded = false;
 
@@ -118,7 +118,7 @@ namespace ElfmeterProjekt.ElfmeterProjektCore.ViewModels
                     if (gen > 5)
                     {
                         _alertService.ShowAlert($"Treffer für {SelectedTeam.TeamName}",
-                            $"{SelectedTeam.TeamName} hat getroffen und erhalten 1nen Punkt!");
+                            $"{SelectedTeam.TeamName} hat getroffen und erhält 1 Punkt!");
                         count++;
                     }
                     else
@@ -142,7 +142,7 @@ namespace ElfmeterProjekt.ElfmeterProjektCore.ViewModels
                     if (gen > 5)
                     {
                         _alertService.ShowAlert($"Treffer für {SelectedTeam2.TeamName}",
-                            $"{SelectedTeam2.TeamName} hat getroffen und erhalten 1nen Punkt!");
+                            $"{SelectedTeam2.TeamName} hat getroffen und erhält 1 Punkt!");
                         count2++;
                     }
                     else
